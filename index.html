@@ -1,0 +1,139 @@
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medica Labs & Diagnostics</title>
+    <style>
+        /* Base Page Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Container for the top frames layout */
+        .header-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* Common styling for both frames */
+        .frame {
+            background: #ffffff;
+            border: 2px solid #00a8b5; /* Matching the teal accent color from the image */
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Left Frame: Image Styling */
+        .left-frame {
+            align-items: center;
+        }
+
+        .left-frame img {
+            max-width: 100%;
+            max-height: 240px;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        /* Right Frame: Form Styling */
+        .right-frame {
+            justify-content: flex-start;
+        }
+
+        .right-frame h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #f26522; /* Matching the orange accent color from the image */
+            font-size: 1.5rem;
+            border-bottom: 2px solid #f4f7f6;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-group input, .form-group select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: #00a8b5;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .header-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <!-- Top Left Frame: Photo -->
+        <div class="frame left-frame">
+            <!-- Replace 'medica-logo.jpg' with the actual filename of your saved photo -->
+            <img src="medica-logo.jpg" alt="Medica Labs & Diagnostics Banner">
+        </div>
+
+        <!-- Top Right Frame: Form Fields -->
+        <div class="frame right-frame">
+            <h2>Patient Registration / Appointment</h2>
+            
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name">
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Mobile Number</label>
+                <input type="tel" id="mobile" name="mobile" placeholder="Enter 10-digit mobile number">
+            </div>
+
+            <div class="form-group">
+                <label for="area">Area / Location</label>
+                <select id="area" name="area">
+                    <option value="" disabled selected>Select your area</option>
+                    <option value="area1">Downtown / Main Center</option>
+                    <option value="area2">North Zone</option>
+                    <option value="area3">South Zone</option>
+                    <option value="area4">East Zone</option>
+                    <option value="area5">West Zone</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
