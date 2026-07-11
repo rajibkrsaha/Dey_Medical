@@ -16,32 +16,38 @@ HTML
             justify-content: center;
         }
 
-        /* Container for the top frames layout */
-        .header-container {
+        /* Main layout wrapper */
+        .page-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Container for the two top frames */
+        .top-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
-            width: 100%;
-            max-width: 1200px;
         }
 
-        /* Common styling for both frames */
+        /* Common styling for all frames */
         .frame {
             background: #ffffff;
-            border: 2px solid #00a8b5; /* Matching the teal accent color from the image */
+            border: 2px solid #00a8b5; /* Teal accent color from image */
             border-radius: 8px;
-            padding: 20px;
+            padding: 25px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             box-sizing: border-box;
-            min-height: 280px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
 
-        /* Left Frame: Image Styling */
+        /* Top Left Frame: Image Styling */
         .left-frame {
+            display: flex;
             align-items: center;
+            justify-content: center;
+            min-height: 280px;
         }
 
         .left-frame img {
@@ -51,15 +57,18 @@ HTML
             border-radius: 4px;
         }
 
-        /* Right Frame: Form Styling */
+        /* Top Right Frame: Form Styling */
         .right-frame {
+            display: flex;
+            flex-direction: column;
             justify-content: flex-start;
+            min-height: 280px;
         }
 
         .right-frame h2 {
             margin-top: 0;
             margin-bottom: 20px;
-            color: #f26522; /* Matching the orange accent color from the image */
+            color: #f26522; /* Orange accent color from image */
             font-size: 1.5rem;
             border-bottom: 2px solid #f4f7f6;
             padding-bottom: 10px;
@@ -90,9 +99,111 @@ HTML
             border-color: #00a8b5;
         }
 
+        /* Bottom Frame Styling */
+        .bottom-frame {
+            border: 2px solid #f26522; /* Styled with the orange profile theme */
+            color: #333;
+        }
+
+        .bottom-frame h2 {
+            color: #f26522;
+            text-align: center;
+            margin-top: 0;
+            font-size: 1.6rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        /* Information Grid Layout */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .section-box {
+            background-color: #fcfcfc;
+            border-left: 4px solid #00a8b5;
+            padding: 15px 20px;
+            border-radius: 0 6px 6px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .section-box h3 {
+            color: #00a8b5;
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .section-box p {
+            margin: 6px 0;
+            line-height: 1.5;
+        }
+
+        /* Doctors List Styling */
+        .doctors-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .doctors-list li {
+            padding: 6px 0;
+            font-weight: 500;
+        }
+
+        .doctors-list li::before {
+            content: "🩺 ";
+        }
+
+        /* Pharmacy Grid Styling */
+        .pharmacy-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .feature-item::before {
+            content: "• ";
+            color: #f26522;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-right: 8px;
+        }
+
+        .whatsapp-highlight {
+            background-color: #25D366;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
         /* Responsive design for smaller screens */
         @media (max-width: 768px) {
-            .header-container {
+            .top-row {
+                grid-template-columns: 1fr;
+            }
+            .details-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -100,39 +211,86 @@ HTML
 </head>
 <body>
 
-    <div class="header-container">
-        <!-- Top Left Frame: Photo -->
-        <div class="frame left-frame">
-            <!-- Replace 'medica-logo.jpg' with the actual filename of your saved photo -->
-            <img src="medica-logo.jpg" alt="Medica Labs & Diagnostics Banner">
+    <div class="page-container">
+        
+        <!-- Top Section holding Left and Right Frames -->
+        <div class="top-row">
+            <!-- Top Left Frame: Photo -->
+            <div class="frame left-frame">
+                <img src="PHOTO-2026-04-04-00-59-09 (1).jpg" alt="Medica Labs & Diagnostics Banner">
+            </div>
+
+            <!-- Top Right Frame: Form Fields -->
+            <div class="frame right-frame">
+                <h2>Patient Registration / Appointment</h2>
+                
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="tel" id="mobile" name="mobile" placeholder="Enter 10-digit mobile number">
+                </div>
+
+                <div class="form-group">
+                    <label for="area">Area / Location</label>
+                    <select id="area" name="area">
+                        <option value="" disabled selected>Select your area</option>
+                        <option value="area1">Downtown / Main Center</option>
+                        <option value="area2">North Zone</option>
+                        <option value="area3">South Zone</option>
+                        <option value="area4">East Zone</option>
+                        <option value="area5">West Zone</option>
+                    </select>
+                </div>
+            </div>
         </div>
 
-        <!-- Top Right Frame: Form Fields -->
-        <div class="frame right-frame">
-            <h2>Patient Registration / Appointment</h2>
+        <!-- Bottom Frame: Customized Text Layout -->
+        <div class="frame bottom-frame">
+            <h2>Comprehensive Multispecialty Care Under One Roof</h2>
+            <div class="subtitle">From diagnosis to treatment, we provide expert care for all your health needs</div>
             
-            <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter your full name">
-            </div>
-
-            <div class="form-group">
-                <label for="mobile">Mobile Number</label>
-                <input type="tel" id="mobile" name="mobile" placeholder="Enter 10-digit mobile number">
-            </div>
-
-            <div class="form-group">
-                <label for="area">Area / Location</label>
-                <select id="area" name="area">
-                    <option value="" disabled selected>Select your area</option>
-                    <option value="area1">Downtown / Main Center</option>
-                    <option value="area2">North Zone</option>
-                    <option value="area3">South Zone</option>
-                    <option value="area4">East Zone</option>
-                    <option value="area5">West Zone</option>
-                </select>
+            <div class="details-grid">
+                <!-- Lab Services section -->
+                <div class="section-box">
+                    <h3>Laboratory & Diagnostics</h3>
+                    <p><strong>We are authorized collection center of Path Kind labs.</strong></p>
+                    <p>All pathological tests done here, home sample collection available.</p>
+                </div>
+                
+                <!-- Doctors Consultation section -->
+                <div class="section-box">
+                    <h3>Doctor's Available For Consultation</h3>
+                    <ul class="doctors-list">
+                        <li>Dr Juri Bhattacharya (Gynaecologist)</li>
+                        <li>Dr Pratik Baruah (Dermatologist)</li>
+                        <li>Dr Hridoyjeet Chowdhury (Medicine Specialist)</li>
+                        <li>Dr Arki Das (Medicine Specialist)</li>
+                    </ul>
+                </div>
+                
+                <!-- Pharmacy section across full bottom width inside grid -->
+                <div class="section-box" style="grid-column: 1 / -1;">
+                    <h3>Pharmacy</h3>
+                    <p>Contact / Order via WhatsApp: <span class="whatsapp-highlight">📲 9957-141-789</span></p>
+                    
+                    <div class="pharmacy-features">
+                        <div class="feature-item">Free Delivery</div>
+                        <div class="feature-item">Baby needs</div>
+                        <div class="feature-item">Fast Service</div>
+                        <div class="feature-item">Self Care</div>
+                        <div class="feature-item">Medicines</div>
+                        <div class="feature-item">Health Devices</div>
+                        <div class="feature-item">Ayurveda</div>
+                        <div class="feature-item">Surgical Items</div>
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
 
 </body>
