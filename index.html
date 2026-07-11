@@ -1,286 +1,458 @@
-TML
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medica Labs & Diagnostics</title>
+    <title>Medica Labs & Diagnostics | Expert Healthcare & Appointments</title>
     <style>
-        /* Base Page Styling */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
+        :root {
+            --primary-teal: #008b99;
+            --primary-teal-dark: #006873;
+            --accent-orange: #f26522;
+            --accent-orange-dark: #d94f0d;
+            --bg-light: #f4f8f9;
+            --text-main: #2d3748;
+            --text-muted: #5a6a85;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+            --shadow-md: 0 10px 25px rgba(0, 139, 153, 0.08);
+            --shadow-lg: 0 15px 35px rgba(0,0,0,0.06);
         }
 
-        /* Main layout wrapper */
-        .page-container {
-            width: 100%;
-            max-width: 1200px;
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Announcement Bar */
+        .announcement-bar {
+            background: linear-gradient(90deg, var(--primary-teal-dark), var(--primary-teal));
+            color: white;
+            text-align: center;
+            padding: 8px 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Navigation / Header Brand Area */
+        .navbar {
+            background: #ffffff;
+            padding: 15px 40px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--primary-teal-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-brand span {
+            color: var(--accent-orange);
+        }
+
+        /* Main Container layout */
+        .page-wrapper {
+            max-width: 1240px;
+            margin: 40px auto;
+            padding: 0 20px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 35px;
         }
 
-        /* Container for the two top frames */
-        .top-row {
+        /* Top Grid Layout split */
+        .hero-split-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 35px;
+            align-items: stretch;
         }
 
-        /* Common styling for all frames */
         .frame {
             background: #ffffff;
-            border: 2px solid #00a8b5; /* Teal accent color from image */
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* Top Left Frame: Image Styling */
-        .left-frame {
+        /* Left Frame: Banner Display */
+        .banner-frame {
+            border: 1px solid rgba(0, 139, 153, 0.12);
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 280px;
+            background: #ffffff;
+            padding: 12px;
         }
 
-        .left-frame img {
-            max-width: 100%;
-            max-height: 240px;
+        .banner-frame img {
+            width: 100%;
+            height: 100%;
+            max-height: 280px;
             object-fit: contain;
-            border-radius: 4px;
+            border-radius: 8px;
         }
 
-        /* Top Right Frame: Form Styling */
-        .right-frame {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            min-height: 280px;
+        /* Right Frame: Modern Patient Registration */
+        .form-frame {
+            border: 1px solid rgba(0, 139, 153, 0.15);
+            padding: 20px;
+            position: relative;
         }
 
-        .right-frame h2 {
+        .form-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent-orange);
+        }
+
+        .form-frame h2 {
             margin-top: 0;
-            margin-bottom: 20px;
-            color: #f26522; /* Orange accent color from image */
-            font-size: 1.5rem;
-            border-bottom: 2px solid #f4f7f6;
-            padding-bottom: 10px;
+            margin-bottom: 6px;
+            color: var(--primary-teal-dark);
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .form-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.88rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            outline: none;
+            box-sizing: border-box;
+            background-color: #f8fafc;
+            transition: all 0.2s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            background-color: #ffffff;
+            border-color: var(--primary-teal);
+            box-shadow: 0 0 0 3px rgba(0, 139, 153, 0.15);
+        }
+
+        /* Checkbox Authorization */
+        .consent-checkbox-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 25px 0;
+            padding: 12px;
+            background: #fff8f5;
+            border-radius: 8px;
+            border: 1px dashed rgba(242, 101, 34, 0.3);
+        }
+
+        .consent-checkbox-wrapper input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-orange);
+            cursor: pointer;
+            margin-top: 2px;
+        }
+
+        .consent-checkbox-wrapper label {
+            font-size: 0.85rem;
+            color: #4a5568;
+            line-height: 1.5;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        /* Action Buttons */
+        .btn-submit {
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-orange-dark));
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(242, 101, 34, 0.25);
+            transition: all 0.2s ease;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(242, 101, 34, 0.35);
+        }
+
+        .contact-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-self: stretch;
+            width: 100%;
+            box-sizing: border-box;
+            background: #e9f8fa;
+            color: var(--primary-teal-dark);
+            border: 1px solid rgba(0, 139, 153, 0.25);
+            border-radius: 12px;
+            padding: 10px 16px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Bottom Feature Grid Frame */
+        .showcase-frame {
+            border: 1px solid rgba(242, 101, 34, 0.12);
+            padding: 40px;
+            background: #ffffff;
+        }
+
+        .showcase-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        .showcase-header h2 {
+            font-size: 2rem;
+            color: var(--primary-teal-dark);
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .showcase-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .medical-services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #edf2f7;
+            border-radius: 14px;
+            padding: 0;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
         }
 
-        .form-group label {
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #333;
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
-        .form-group input, .form-group select {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            border-color: #00a8b5;
-        }
-
-        /* Checkbox Layout Styles */
-        .checkbox-group {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            margin: 20px 0 15px 0;
-            cursor: pointer;
-        }
-
-        .checkbox-group input {
-            margin-top: 4px;
-            cursor: pointer;
-            width: 16px;
-            height: 16px;
-        }
-
-        .checkbox-group label {
-            font-size: 0.9rem;
-            color: #555;
-            line-height: 1.4;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        /* Action Button */
-        .btn-book {
-            background-color: #f26522;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.2s;
+        .card-image {
             width: 100%;
-            margin-top: 5px;
+            height: 180px;
+            object-fit: cover;
+            background-color: #e2e8f0; /* Fallback loading color */
         }
 
-        .btn-book:hover {
-            background-color: #d94f0d;
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
         }
 
-        /* Bottom Frame Styling */
-        .bottom-frame {
-            border: 2px solid #f26522;
-            color: #333;
-        }
-
-        .bottom-frame h2 {
-            color: #f26522;
-            text-align: center;
+        .card h3 {
             margin-top: 0;
-            font-size: 1.6rem;
+            font-size: 1.25rem;
+            color: var(--primary-teal);
+            border-bottom: 2px solid #edf2f7;
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .subtitle {
-            text-align: center;
-            font-style: italic;
-            color: #666;
-            margin-bottom: 25px;
-            font-size: 1.1rem;
+        .card p {
+            color: var(--text-main);
+            font-size: 0.95rem;
+            margin: 8px 0;
         }
 
-        /* Information Grid Layout */
-        .details-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 20px;
+        .checked-text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+        .checked-text::before {
+            content: "✓";
+            color: var(--primary-teal);
+            font-weight: bold;
         }
 
-        .section-box {
-            background-color: #fcfcfc;
-            border-left: 4px solid #00a8b5;
-            padding: 15px 20px;
-            border-radius: 0 6px 6px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
-
-        .section-box h3 {
-            color: #00a8b5;
-            margin-top: 0;
-            margin-bottom: 12px;
-            font-size: 1.2rem;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
-        }
-
-        .section-box p {
-            margin: 6px 0;
-            line-height: 1.5;
-        }
-
-        /* Doctors List Styling */
-        .doctors-list {
+        .doctor-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
-        .doctors-list li {
-            padding: 6px 0;
-            font-weight: 500;
-        }
-
-        .doctors-list li::before {
-            content: "🩺 ";
-        }
-
-        /* Pharmacy Grid Styling */
-        .pharmacy-features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-top: 12px;
-        }
-
-        .feature-item {
+        .doctor-list li {
+            padding: 10px 12px;
+            border-bottom: 1px solid #f7fafc;
             display: flex;
             align-items: center;
+            gap: 12px;
             font-weight: 500;
         }
 
-        .feature-item::before {
-            content: "• ";
-            color: #f26522;
-            font-weight: bold;
-            font-size: 1.3rem;
-            margin-right: 8px;
+        .doctor-list li:last-child {
+            border-bottom: none;
         }
 
-        .whatsapp-highlight {
+        .doctor-list li::before {
+            content: "🩺";
+            font-size: 1.1rem;
+        }
+
+        /* Pharmacy Card - Full Width Clean Layout Without Image */
+        .pharmacy-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(180deg, #ffffff 0%, #fafdfd 100%);
+            border-left: 5px solid var(--accent-orange);
+        }
+
+        .whatsapp-badge {
             background-color: #25D366;
             color: white;
-            padding: 6px 12px;
-            border-radius: 4px;
-            display: inline-block;
-            font-weight: bold;
-            margin-top: 5px;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-left: 10px;
         }
 
-        /* Responsive design for smaller screens */
-        @media (max-width: 768px) {
-            .top-row {
+        .pharmacy-tag-cloud {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .pharmacy-tag {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-main);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid #e2e8f0;
+            background: #ffffff;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 968px) {
+            .hero-split-grid {
                 grid-template-columns: 1fr;
             }
-            .details-grid {
+            .medical-services-grid {
                 grid-template-columns: 1fr;
+            }
+            .pharmacy-tag-cloud {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="page-container">
+    <!-- Top Sticky Highlight Strip -->
+    <div class="announcement-bar">
+        ⚡ Authorized Collection Center of PathKind Labs — Safe, Fast, and Accurate Diagnostics.
+    </div>
+
+    <!-- Website Branding Bar -->
+    <div class="navbar">
+        <div class="navbar-brand">MEDICA <span>LABS & DIAGNOSTICS</span></div>
+        <div style="font-size: 0.9rem; font-weight: 600; color: var(--primary-teal);">By Dey's Medical Store</div>
+    </div>
+
+    <div class="page-wrapper">
         
-        <!-- Top Section holding Left and Right Frames -->
-        <div class="top-row">
-            <!-- Top Left Frame: Photo -->
-            <div class="frame left-frame">
-                <img src="PHOTO-2026-04-04-00-59-09 (1).jpg" alt="Medica Labs & Diagnostics Banner">
+        <!-- Top Row Section -->
+        <div class="hero-split-grid">
+            
+            <!-- Left Frame: Image Showcase Block -->
+            <div class="frame banner-frame">
+                <img src="medica-logo.jpg" alt="Medica Labs & Diagnostics Profile Information">
             </div>
 
-            <!-- Top Right Frame: Form Fields -->
-            <div class="frame right-frame">
-                <h2>Patient Registration / Appointment</h2>
+            <!-- Right Frame: Medical Form Application Box -->
+            <div class="frame form-frame">
+                <h2>Patient Registration</h2>
+                <div class="form-subtitle">Fill up the secure details below to instantly request your medical service slot.</div>
                 
                 <div class="form-group">
                     <label for="name">Full Name</label>
-                    <input type="text" id="name" placeholder="Enter your full name">
+                    <input type="text" id="name" placeholder="e.g. John Doe">
                 </div>
 
                 <div class="form-group">
                     <label for="mobile">Mobile Number</label>
-                    <input type="tel" id="mobile" placeholder="Enter 10-digit mobile number">
+                    <input type="tel" id="mobile" placeholder="e.g. 9957141789">
                 </div>
 
                 <div class="form-group">
-                    <label for="area">Area / Location</label>
+                    <label for="area">Area / Preferred Location</label>
                     <select id="area">
-                        <option value="" disabled selected>Select your area</option>
+                        <option value="" disabled selected>Choose your area location</option>
                         <option value="Downtown / Main Center">Downtown / Main Center</option>
                         <option value="North Zone">North Zone</option>
                         <option value="South Zone">South Zone</option>
@@ -289,100 +461,115 @@ TML
                     </select>
                 </div>
 
-                <!-- Consent Checkbox -->
-                <div class="checkbox-group">
+                <!-- Custom Authorized Box Layout -->
+                <div class="consent-checkbox-wrapper">
                     <input type="checkbox" id="authConsent">
                     <label for="authConsent">I authorize Dey's Medical Tezpur to contact me regarding Test details.</label>
                 </div>
 
-                <!-- Submission Button -->
-                <button type="button" class="btn-book" onclick="handleBooking()">Book now</button>
+                <button type="button" class="btn-submit" onclick="handleBooking()">Book Now</button>
             </div>
         </div>
 
-        <!-- Bottom Frame: Customized Text Layout -->
-        <div class="frame bottom-frame">
-            <h2>Comprehensive Multispecialty Care Under One Roof</h2>
-            <div class="subtitle">From diagnosis to treatment, we provide expert care for all your health needs</div>
+        <div class="contact-label">Phone No: 03712-325-099</div>
+
+        <!-- Bottom Frame Content Makeover -->
+        <div class="frame showcase-frame">
+            <div class="showcase-header">
+                <h2>Comprehensive Multispecialty Care Under One Roof</h2>
+                <p>From diagnosis to treatment, we provide industry-leading expert care tailored for all your health requirements.</p>
+            </div>
             
-            <div class="details-grid">
-                <!-- Lab Services section -->
-                <div class="section-box">
-                    <h3>Laboratory & Diagnostics</h3>
-                    <p><strong>We are authorized collection center of Path Kind labs.</strong></p>
-                    <p>All pathological tests done here, home sample collection available.</p>
-                </div>
+            <div class="medical-services-grid">
                 
-                <!-- Doctors Consultation section -->
-                <div class="section-box">
-                    <h3>Doctor's Available For Consultation</h3>
-                    <ul class="doctors-list">
-                        <li>Dr Juri Bhattacharya (Gynaecologist)</li>
-                        <li>Dr Pratik Baruah (Dermatologist)</li>
-                        <li>Dr Hridoyjeet Chowdhury (Medicine Specialist)</li>
-                        <li>Dr Arki Das (Medicine Specialist)</li>
-                    </ul>
-                </div>
-                
-                <!-- Pharmacy section -->
-                <div class="section-box" style="grid-column: 1 / -1;">
-                    <h3>Pharmacy</h3>
-                    <p>Contact / Order via WhatsApp: <span class="whatsapp-highlight">📲 9957-141-789</span></p>
-                    
-                    <div class="pharmacy-features">
-                        <div class="feature-item">Free Delivery</div>
-                        <div class="feature-item">Baby needs</div>
-                        <div class="feature-item">Fast Service</div>
-                        <div class="feature-item">Self Care</div>
-                        <div class="feature-item">Medicines</div>
-                        <div class="feature-item">Health Devices</div>
-                        <div class="feature-item">Ayurveda</div>
-                        <div class="feature-item">Surgical Items</div>
+                <!-- Card 1: Labs (Image Link Fixed Here) -->
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" alt="Medical Diagnostics Laboratory" class="card-image">
+                    <div class="card-content">
+                        <h3>Laboratory & Diagnostics</h3>
+                        <p class="checked-text" style="margin-bottom: 12px; color: var(--primary-teal-dark);"><strong>We are authorized collection center of Path Kind labs.</strong></p>
+                        <p>All types of advanced pathological tests are cleanly executed here. Professional home sample collection alternatives are fully active and available.</p>
                     </div>
                 </div>
+                
+                <!-- Card 2: Clinical Doctors -->
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=600&q=80" alt="Doctor Consultation" class="card-image">
+                    <div class="card-content">
+                        <h3>Available Specialist Doctors</h3>
+                        <ul class="doctor-list">
+                            <li>Dr Juri Bhattacharya <span style="color:var(--text-muted); font-size:0.85rem; margin-left:auto;">(Gynaecologist)</span></li>
+                            <li>Dr Pratik Baruah <span style="color:var(--text-muted); font-size:0.85rem; margin-left:auto;">(Dermatologist)</span></li>
+                            <li>Dr Hridoyjeet Chowdhury <span style="color:var(--text-muted); font-size:0.85rem; margin-left:auto;">(Medicine Specialist)</span></li>
+                            <li>Dr Arki Das <span style="color:var(--text-muted); font-size:0.85rem; margin-left:auto;">(Medicine Specialist)</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Card 3: Full Width Modern Pharmacy -->
+                <div class="card pharmacy-card">
+                    <div class="card-content">
+                        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap: 10px; border-bottom: 2px solid #edf2f7; padding-bottom: 12px; margin-bottom: 15px;">
+                            <h3 style="border-bottom:none; margin:0; padding:0;">Pharmacy Store Support</h3>
+                            <span class="whatsapp-badge">💬 WhatsApp: 9957-141-789</span>
+                        </div>
+                        
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Our localized healthcare counters supply express services. Order prescription items instantly.</p>
+                        
+                        <div class="pharmacy-tag-cloud">
+                            <div class="pharmacy-tag">Free Delivery</div>
+                            <div class="pharmacy-tag">Baby needs</div>
+                            <div class="pharmacy-tag">Fast Service</div>
+                            <div class="pharmacy-tag">Self Care</div>
+                            <div class="pharmacy-tag">Medicines</div>
+                            <div class="pharmacy-tag">Health Devices</div>
+                            <div class="pharmacy-tag">Ayurveda</div>
+                            <div class="pharmacy-tag">Surgical Items</div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
     </div>
 
-    <!-- JavaScript Handling Email Generation -->
+    <footer>
+        &copy; 2026 Medica Labs & Diagnostics | Partnered with PathKind Labs. All health records protected.
+    </footer>
+
+    <!-- Form Handler Logic scripts -->
     <script>
         function handleBooking() {
-            // Get form field elements
             const nameField = document.getElementById('name').value.trim();
             const mobileField = document.getElementById('mobile').value.trim();
             const areaField = document.getElementById('area').value;
             const consentCheckbox = document.getElementById('authConsent');
 
-            // 1. Validation check for required text inputs
             if (!nameField || !mobileField || !areaField) {
-                alert("Please fill in your Name, Mobile Number, and Area before booking.");
+                alert("Attention: Please fill in your Name, Mobile Number, and Area Location before checking out.");
                 return;
             }
 
-            // 2. Validation check for Authorization Checkbox
             if (!consentCheckbox.checked) {
-                alert("Please check the authorization box to allow Dey's Medical Tezpur to contact you.");
+                alert("Authorization Request: Please check the box to authorize Dey's Medical Tezpur to handle your connection inquiry.");
                 return;
             }
 
-            // 3. Email configuration variables
             const recipientEmail = "rajibkrsaha@gmail.com";
-            const emailSubject = encodeURIComponent("New Patient Appointment Booking");
+            const emailSubject = encodeURIComponent("New Patient Registration - " + nameField);
             
-            // Build the body structure neatly
             const emailBody = encodeURIComponent(
-                "Hello,\n\nA new patient has requested an appointment booking details:\n\n" +
-                "Name: " + nameField + "\n" +
-                "Phone Number: " + mobileField + "\n" +
-                "Area: " + areaField + "\n\n" +
-                "Consent Status: Authorized to contact."
+                "Dear Admin,\n\nA new registration inquiry has been submitted via the 1-Page Portal:\n\n" +
+                "• Patient Name: " + nameField + "\n" +
+                "• Contact Number: " + mobileField + "\n" +
+                "• Location Area: " + areaField + "\n\n" +
+                "Authorization Status: Granted / Verified"
             );
 
-            // Construct mailto link URL and execute trigger redirect
+            // Execute Mail Client Trigger
             window.location.href = `mailto:${recipientEmail}?subject=${emailSubject}&body=${emailBody}`;
         }
     </script>
-
 </body>
 </html>
